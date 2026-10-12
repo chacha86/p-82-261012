@@ -44,6 +44,12 @@ class App {
 
                 "삭제" -> {
                     val id: Int = rq.getParamAsInt("id", 0)
+
+                    wiseSayings.removeIf {
+                        it.id == id
+                    }
+
+                    println("${id}번 명언이 삭제되었습니다.")
                 }
             }
         }
