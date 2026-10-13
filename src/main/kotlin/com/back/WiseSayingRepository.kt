@@ -5,6 +5,10 @@ class WiseSayingRepository {
     var lastId = 0
     val wiseSayings = mutableListOf<WiseSaying>()
 
+    fun clear() {
+        wiseSayings.clear()
+        lastId = 0
+    }
     fun save(wiseSaying: WiseSaying): WiseSaying {
 
 //        if(wiseSaying.isNew()) {
