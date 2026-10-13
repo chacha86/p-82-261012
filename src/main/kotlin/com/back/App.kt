@@ -11,7 +11,7 @@ class App(
         while (true) {
 
             print("명령) ")
-            val input = readln()
+            val input = readln().trim()
             val rq = Rq(input)
             val action = rq.actionName
 
