@@ -46,4 +46,9 @@ class WiseSayingFileRepositoryTest {
         assertThat(foundWiseSaying).isEqualTo(wiseSaying)
     }
 
+    @Test
+    fun `saveLastId, loadLastId`() {
+        wiseSayingRepository.saveLastId(10)
+        assertThat(wiseSayingRepository.loadLastId()).isEqualTo(10)
+    }
 }

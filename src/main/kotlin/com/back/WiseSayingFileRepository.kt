@@ -56,6 +56,37 @@ class WiseSayingFileRepository : WiseSayingRepository {
             ?.let { WiseSaying.fromJsonStr(it.readText()) }
     }
 
+    fun saveLastId(lastId: Int) {
+        mkTableDirsIfNotExists()
+
+        tableDirPath.resolve("lastId.txt")
+            .toFile()
+            .writeText(lastId.toString())
+    }
+
+    fun loadLastId(): Int {
+        return runCatching {
+            tableDirPath.resolve("lastId.txt")
+                .toFile()
+                .readText()
+                .toInt()
+        }.getOrElse { 0 }
+
+//        return try {
+//            tableDirPath.resolve("lastId.txt")
+//                .toFile()
+//                .readText()
+//                .toInt()
+//        } catch (e: Exception) {
+//            0
+//        }
+//
+//        return tableDirPath.resolve("lastId.txt")
+//                .toFile()
+//                .readText()
+//                .toIntOrNull() ?: 0
+    }
+
     override fun delete(wiseSaying: WiseSaying): Boolean {
         TODO("Not yet implemented")
     }
