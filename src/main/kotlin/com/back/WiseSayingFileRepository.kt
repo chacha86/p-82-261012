@@ -14,9 +14,15 @@ class WiseSayingFileRepository : WiseSayingRepository {
         return wiseSaying
             .takeIf { it.isNew() }
             ?.also {
-                wiseSaying.id = ++lastId
+                wiseSaying.id = genNextId()
                 saveOnDisk(wiseSaying)
             } ?: wiseSaying
+    }
+
+    fun genNextId(): Int {
+        return (loadLastId() + 1).also {
+            saveLastId(it)
+        }
     }
 
     private fun saveOnDisk(wiseSaying: WiseSaying) {
